@@ -72,10 +72,6 @@ int main(int argc, char* argv[]) {
 			}
 		}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 63032f1575c040c6d2b3aa08020be33c1a35edad
 		//在控制台输出生成的64位密钥
 		printf("The 64 bit secret key generated is:\t") ;
 		for(int i=0 ; i<8 ; i++)
