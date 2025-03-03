@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
 			return 1;
 		}
 
-		key_file = fopen(argv[2], "wb");//把生成的秘钥写进key_file
+		key_file = fopen(argv[2], "wb");//把生成的密钥写进key_file
 		if (!key_file) {
 			printf("Could not open file to write key.");
 			return 1;
@@ -72,11 +72,17 @@ int main(int argc, char* argv[]) {
 			}
 		}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 63032f1575c040c6d2b3aa08020be33c1a35edad
 		//在控制台输出生成的64位密钥
 		printf("The 64 bit secret key generated is:\t") ;
 		for(int i=0 ; i<8 ; i++)
 			printf("%X%X " , des_key[i]/16 , des_key[i]%16) ;
 		printf("%n") ;
+
+		
 
 		bytes_written = fwrite(des_key, 1, DES_KEY_SIZE, key_file);
 		if (bytes_written != DES_KEY_SIZE) {
