@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
 			return 1;
 		}
 
-		key_file = fopen(argv[2], "wb");//把生成的秘钥写进key_file
+		key_file = fopen(argv[2], "wb");//把生成的密钥写进key_file
 		if (!key_file) {
 			printf("Could not open file to write key.");
 			return 1;
@@ -51,12 +51,12 @@ int main(int argc, char* argv[]) {
 		short int bytes_written;
 		unsigned char* des_key = (unsigned char*) malloc(8*sizeof(char));
 		
-		//将generate_key产生的随机秘钥简单替换为实验所给的 DBCA9876543210   
+		//将generate_key产生的随机密钥简单替换为实验所给的 DBCA9876543210   
 		//generate_key(des_key);
 		unsigned char *served_key = (unsigned char*) malloc(14*sizeof(char));
 		served_key = "DBCA9876543210"; 
 		unsigned char processing_char ;
-		for(int i=0 ; i<=55 ; i++) {
+		for(int i=0 ; i<=63 ; i++) {
 			if(i%8==7) {
 				unsigned char check_count = processing_char&1 + (processing_char>>1)&1 + (processing_char>>2)&1 + (processing_char>>3)&1 + 
 										(processing_char>>4)&1 + (processing_char>>5)&1 + (processing_char>>6)&1 ;
@@ -73,11 +73,13 @@ int main(int argc, char* argv[]) {
 		}
 
 
-		//在控制台输出生成的64位秘钥
+		//在控制台输出生成的64位密钥
 		printf("The 64 bit secret key generated is:\t") ;
 		for(int i=0 ; i<8 ; i++)
 			printf("%X%X " , des_key[i]/16 , des_key[i]%16) ;
 		printf("%n") ;
+
+		
 
 		bytes_written = fwrite(des_key, 1, DES_KEY_SIZE, key_file);
 		if (bytes_written != DES_KEY_SIZE) {
@@ -200,7 +202,7 @@ int main(int argc, char* argv[]) {
 		printf("\n") ;
 		
 		for(int i=1 ; i<=16 ; i++) {
-			printf("Sub_keys in Round %d:\t" , i ) ;
+			printf("Sub_key in Round %d:\t" , i ) ;
 			for(int j=0 ; j<8 ; j++)
 				printf("%X%X " , key_sets[i].k[j]/16 , key_sets[i].k[j]%16) ;
 			printf("\n") ;
